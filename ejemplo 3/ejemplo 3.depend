@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1485877850 source:e:\sem estr 2\ejemplo 3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<io.h>
+	<string.h>
+	<conio.h>
+

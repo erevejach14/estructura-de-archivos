@@ -21,7 +21,7 @@ int main(){
     printf("\n\t    Con este programa puedes ver los datos de tus amigos favoritos.\n");
     printf("\n\t\tProporcione el nombre del archivo que quiera crear:");
     gets(nomarch);
-    if((fd=open(nomarch, SOLOLECT))<0)
+    if(fd =open(nomarch, SOLOLECT)<0)
     {
         printf("Fin del programa\n");
         exit(1);

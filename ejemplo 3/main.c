@@ -26,6 +26,7 @@ int main(){
     char nomarch[15];
     int long_reg;
     int fd, i;
+    char lon_reg[3];
 
     printf("\n\n\tProporcione el nombre del archivo que quieres crear: ");
     gets(nomarch);
@@ -38,6 +39,7 @@ int main(){
     while(strlen(respuesta) > 0){
         buffreg[0] = '\0';
         campo_a_buffreg(buffreg, respuesta);
+        camp
         for(i = 1; *solicitud[i] != '\0'; i++){
             printf("%s", solicitud[i]);
             gets(respuesta);
@@ -45,7 +47,8 @@ int main(){
         }
         /*Escribe la longitud del registro y el contenido del buffer */
         long_reg = strlen(buffreg);
-        write(fd, &long_reg, 2);
+        itoa(long_reg,lon_reg,10);
+        write(fd, &lon_reg, 2);
         write(fd, buffreg, long_reg);
 
         /*Se prepara para los siguientes datos */

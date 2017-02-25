@@ -7,8 +7,13 @@
 
 #define DELIM_CAD "|"
 #define PMODE 0755
+#define SOLOLECT 0
+
 #define TAM_MAX_REG 512
 #define campo_a_buffreg(br, cad) strcat(br, cad); strcat(br, DELIM_CAD);
+
+void escribe();
+void lee();
 
 char buffreg[TAM_MAX_REG + 1];
 char *solicitud[]={
@@ -22,10 +27,30 @@ char *solicitud[]={
 };
 
 int main(){
+    char opc;
+    printf("deme una opcion\n\n1)Escribir a disco\n2)Leer\n");
+    gets(opc);
+
+    switch(opc){
+    case '1':
+        escribe();
+        break;
+    case '2':
+        lee();
+        break;
+    default:
+        printf("ERROR OPCION INCORECTA ADIOS");
+    }
+    printf("ADIOS");
+    return 0;
+}
+
+void escribe(){
     char respuesta[50];
     char nomarch[15];
     int long_reg;
     int fd, i;
+    char lon_reg[3];
 
     printf("\n\n\tProporcione el nombre del archivo que quieres crear: ");
     gets(nomarch);
@@ -45,7 +70,8 @@ int main(){
         }
         /*Escribe la longitud del registro y el contenido del buffer */
         long_reg = strlen(buffreg);
-        write(fd, &long_reg, 2);
+        itoa(long_reg,lon_reg,10);
+        write(fd, &lon_reg, 5);
         write(fd, buffreg, long_reg);
 
         /*Se prepara para los siguientes datos */
@@ -54,5 +80,26 @@ int main(){
     }
     /*Cierra el archivo antes de terminar */
     close(fd);
-    return 0;
+}
+
+void lee(){
+    int longitud;
+    char longitu;
+
+    char respuesta[50];
+    char nomarch[15];
+    int long_reg;
+    int fd, i;
+    printf("\n\n\tProporcione el nombre del archivo que quieres abrir: ");
+    gets(nomarch);
+    if((fd =open(nomarch, SOLOLECT))<0)
+    {
+        printf("Fin del programa\n");
+        exit(1);
+    }
+
+    read(fd, atoi(longitu), 5);
+
+    printf("%s\n",longitud);
+
 }
