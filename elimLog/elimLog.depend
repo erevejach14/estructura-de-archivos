@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1487865609 source:c:\users\erevjoach\desktop\cucei\4to semestre\sem estr 2\elimlog\main.cpp
+	<iostream>
+	"menu.hpp"
+
+1487867532 c:\users\erevjoach\desktop\cucei\4to semestre\sem estr 2\elimlog\menu.hpp
+
+1487867192 source:c:\users\erevjoach\desktop\cucei\4to semestre\sem estr 2\elimlog\amigo.cpp
+	"amigo.hpp"
+	<iostream>
+
+1487867158 c:\users\erevjoach\desktop\cucei\4to semestre\sem estr 2\elimlog\amigo.hpp
+	<iostream>
+
