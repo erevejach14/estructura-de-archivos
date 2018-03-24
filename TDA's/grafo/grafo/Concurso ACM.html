@@ -1,0 +1,389 @@
+
+<!-- saved from url=(0044)http://www.dtic.upf.edu/~jonsson/acm/grafos/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<link rel="stylesheet" type="text/css" href="./Concurso ACM_files/mystyle.css">
+
+<title>Concurso ACM</title>
+
+</head><body><hr>
+<h2>Algoritmos de grafos</h2>
+
+<p>
+Los problemas de grafos son muy frecuentes en los concursos de
+programación. Para resolver un problema de grafos, la
+dificultad no es tanto implementar el algoritmo, sino identificar
+correctamente el tipo de problema de qué se trata. Los
+algoritmos no se necesitan memorizar, sino que se pueden llevar en forma
+de código al concurso (véase el "notebook").
+</p>
+
+<p>Sin embargo, en esta clase vamos a ver un par de ejemplos de
+cómo implementar los algoritmos de grafos. Antes que nada, es
+muy común nombrar los nodos del grafo 0,...,N, ya que podemos
+usar el nombre de cada nodo como índice en un vector o una
+matriz.
+</p>
+
+<h3>Representaciones de grafos</h3>
+
+<p>
+Hay tres maneras comunes para representar los grafos; vamos a
+tomar el siguiente grafo como ejemplo:
+</p>
+
+<p>
+<img src="./Concurso ACM_files/grafo.jpg" alt="Ejemplo de un grafo"><br><br>
+</p>
+
+<ol>
+<li><strong>Matriz de adyacencia</strong>: las aristas del grafo se guardan en una matriz, indicando si un nodo tiene enlace directo con otro.<br><br>
+
+<table>
+   <thead>
+      <tr>
+         <th>O\D</th>
+         <th>0</th>
+         <th>1</th>
+         <th>2</th>
+         <th>3</th>
+         <th>4</th>
+         <th>5</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>0</th>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <th>1</th>
+         <td>0</td>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <th>2</th>
+         <td>0</td>
+         <td>0</td>
+         <td>0</td>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <th>3</th>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+         <td>0</td>
+         <td>0</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <th>4</th>
+         <td>0</td>
+         <td>0</td>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+         <td>1</td>
+      </tr>
+      <tr>
+         <th>5</th>
+         <td>0</td>
+         <td>0</td>
+         <td>1</td>
+         <td>0</td>
+         <td>0</td>
+         <td>0</td>
+      </tr>
+   </tbody>
+</table>
+<br>
+En C++, podemos usar un doble array para guardar la matriz de antes:
+
+<pre><code>
+<span class="green">int</span> A[<span class="pink">6</span>][<span class="pink">6</span>];
+<span class="blue">//inicializar todo a 0</span>
+<span class="garnet">for</span>(<span class="green">int</span> i=<span class="pink">0</span>;i&lt;<span class="pink">6</span>;i++)
+   <span class="garnet">for</span>(<span class="green">int</span> j=<span class="pink">0</span>;j&lt;<span class="pink">6</span>;j++)
+      A[i][j] = <span class="pink">0</span>;
+<span class="blue">//1 si hay enlace origen -&gt; destino</span>
+A[<span class="pink">0</span>][<span class="pink">1</span>] = <span class="pink">1</span>;
+A[<span class="pink">1</span>][<span class="pink">2</span>] = <span class="pink">1</span>;
+A[<span class="pink">1</span>][<span class="pink">4</span>] = <span class="pink">1</span>;
+A[<span class="pink">2</span>][<span class="pink">4</span>] = <span class="pink">1</span>;
+A[<span class="pink">3</span>][<span class="pink">1</span>] = <span class="pink">1</span>;
+A[<span class="pink">4</span>][<span class="pink">3</span>] = <span class="pink">1</span>;
+A[<span class="pink">4</span>][<span class="pink">5</span>] = <span class="pink">1</span>;
+A[<span class="pink">5</span>][<span class="pink">2</span>] = <span class="pink">1</span>;
+</code></pre>
+
+</li><br>
+
+<li><strong>Lista de adyacencia</strong>: para cada nodo, sólo se guardan sus vecinos.<br><br>
+
+<table>
+<tbody>
+	<tr>
+		<th>0 -&gt; </th>
+		<td>1</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<th>1 -&gt; </th>
+		<td>2</td>
+		<td>4</td>
+	</tr>
+	<tr>
+		<th>2 -&gt; </th>
+		<td>4</td>
+	</tr>
+	<tr>
+		<th>3 -&gt; </th>
+		<td>1</td>
+	</tr>
+	<tr>
+		<th>4 -&gt; </th>
+		<td>3</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<th>5 -&gt; </th>
+		<td>2</td>
+	</tr>
+</tbody>
+</table><br>
+
+En C++, podemos usar un vector de vectores para guardar la lista anterior:
+
+<pre><code>
+vector&lt;vector&lt;<span class="green">int</span>&gt; &gt; A(<span class="pink">6</span>);
+<span class="blue">//para cada posición origen añadir vecino</span>
+A[<span class="pink">0</span>].push_back(<span class="pink">1</span>);
+A[<span class="pink">0</span>].push_back(<span class="pink">3</span>);
+A[<span class="pink">1</span>].push_back(<span class="pink">2</span>);
+A[<span class="pink">1</span>].push_back(<span class="pink">4</span>);
+A[<span class="pink">2</span>].push_back(<span class="pink">4</span>);
+A[<span class="pink">3</span>].push_back(<span class="pink">1</span>);
+A[<span class="pink">4</span>].push_back(<span class="pink">3</span>);
+A[<span class="pink">4</span>].push_back(<span class="pink">5</span>);
+A[<span class="pink">5</span>].push_back(<span class="pink">2</span>);
+</code></pre>
+</li><br>
+
+<li><strong>Lista de aristas</strong>: se guarda una lista de todas las aristas del grafo.<br><br>
+
+(0,1) (0,3) (1,2) (1,4) (2,4) (3,1) (4,3) (4,5) (5,2)<br><br>
+
+En C++, podemos usar un vector de pares de enteros para guardar la lista:
+
+<pre><code>
+<span class="blue">//librería para utilizar pair</span>
+<span class="lilac">#include</span> <span class="pink">&lt;utility&gt;</span>;
+<span class="blue">//vector de aristas</span>
+vector&lt;pair&lt;<span class="green">int</span>,<span class="green">int</span>&gt; &gt; A;
+<span class="blue">//insertamos las aristas en el vector</span>
+A.push_back(make_pair(<span class="pink">0</span>, <span class="pink">1</span>));
+A.push_back(make_pair(<span class="pink">0</span>, <span class="pink">3</span>));
+A.push_back(make_pair(<span class="pink">1</span>, <span class="pink">2</span>));
+A.push_back(make_pair(<span class="pink">1</span>, <span class="pink">4</span>));
+A.push_back(make_pair(<span class="pink">2</span>, <span class="pink">4</span>));
+A.push_back(make_pair(<span class="pink">3</span>, <span class="pink">1</span>));
+A.push_back(make_pair(<span class="pink">4</span>, <span class="pink">3</span>));
+A.push_back(make_pair(<span class="pink">4</span>, <span class="pink">5</span>));
+A.push_back(make_pair(<span class="pink">5</span>, <span class="pink">2</span>));
+</code></pre>
+
+</li></ol>
+
+<p>
+Para grafos con costes, en la matriz de adyacencia simplemente se
+puede guardar el coste de cada arista. La lista de adyacencia tiene
+que incluir 2 valores para cada arista: el vecino y el coste, lo que
+se puede representar con pares de enteros. La lista de aristas tiene
+que incluir 3 valores para cada arista: los dos nodos y el coste. Se
+puede representar por un struct o combinando pares.
+</p>
+
+<h3>Algoritmos típicos</h3>
+
+<p>
+Los algoritmos de grafos que suelen aparecer son los típicos
+que se enseñan en Algebra Lineal y Matemática Discreta:
+</p>
+
+<ul>
+<li>Búsqueda BFS</li>
+<li>Búsqueda DFS</li>
+<li>Kruskal</li>
+<li>Dijkstra</li>
+<li>Floyd Warshall</li>
+<li>Ford Fulkerson</li>
+</ul>
+
+<h4>Implementar el algoritmo de Kruskal</h4>
+
+<p>
+Para implementar el algoritmo de Kruskal se puede aprovechar una
+estructura que se llama "Union-Find" o "Merge-Find", que representa
+una partición de un conjunto de valores (en este caso los nodos
+del grafo). La idea es mantener un árbol para cada subconjunto,
+tal que la raíz de cada árbol es el nodo representante
+para el subconjunto correspondiente.
+</p>
+
+<p>
+Las únicas dos operaciones de la estructura son "Merge", que
+combina dos árboles en uno, y "Find", que devuelve el nodo
+representante para un nodo cualquiero. Para implementar esta
+
+estructura es suficiente recordar cuál es el padre de cada
+nodo, lo que se puede hacer con un simple array de enteros. Por
+defecto, la raíz de un árbol es su propio padre.
+</p>
+
+<p>
+Inicialmente cada nodo pertenece a su propio subconjunto, lo que
+quiere decir que hay un árbol por nodo con este mismo nodo como
+raíz:
+</p>
+
+<pre><code>
+<span class="green">int</span> mf[<span class="pink">10</span>];
+<span class="garnet">for</span> (<span class="green">int</span> i = <span class="pink">0</span>; i &lt; <span class="pink">10</span>; ++i)
+   mf[i] = i;
+</code></pre>
+
+<p>
+Para encontrar el nodo representante de un nodo podemos simplemente
+consultar el padre del nodo, y recursivamente encontrar su
+representante hasta encontrar un nodo que es su propio padre (es
+decir, la raíz). Para optimizar futuras consultas se suele
+actualizar el padre de cada nodo en este camino para que coincida con
+la raíz:
+</p>
+
+<pre><code>
+<span class="green">int</span> find(<span class="green">int</span> n) {
+   <span class="garnet">if</span> (mf[n] == n) <span class="garnet">return</span> n;
+   <span class="garnet">else</span> <span class="garnet">return</span> mf[n] = find(mf[n]);
+}
+</code></pre>
+
+<p>
+Finalmente, combinar dos árboles se puede hacer de manera muy
+sencilla. Dadas las dos raizes r1 y r2 de los dos árboles,
+podemos simplemente asignar r1 como padre de r2 (o al revez):
+</p>
+
+<pre><code>
+<span class="green">int</span> merge(<span class="green">int</span> r1, <span class="green">int</span> r2) {
+   mf[r2] = r1;
+}
+</code></pre>
+
+<p>
+Ahora podemos implementar el algoritmo de Kruskal de la siguiente
+manera:
+</p>
+
+<ul>
+<li>Representar el grafo (no dirigido) por una lista de aristas</li>
+<li>Inicializar la estructura merge-find</li>
+<li>Recorrer la lista de aristas de menor a mayor coste</li>
+<li>Para cada arista (a,b), usamos "find" para encontrar el nodo representante de a y b</li>
+<li>Si los nodos representantes son iguales, ignoramos la arista (crearía un ciclo)</li>
+<li>Si los nodos representantes son diferentes, incluimos la arista y usamos "merge" para combinar los dos subconjuntos</li>
+</ul>
+
+<h4>El algoritmo de Bellman Ford</h4>
+
+<p>
+Otro algoritmo común es uno que se llama Bellman Ford, que
+esencialmente es un Dijkstra para el caso de que se permiten aristas
+con coste negativo. El problema sigue siendo encontrar un camino de
+coste mínimo entre dos nodos del grafo. Sin embargo, el coste
+mínimo podría ser -&#8734; si hay ciclos de coste
+negativo que se pueden recorrer. Este caso se tiene que tratar aparte.
+</p>
+
+<p>
+Igual que Kruskal, la mejor representación para Bellman Ford es
+la lista de aristas. El algoritmo se puede resumir de la siguiente
+manera:
+</p>
+
+<ul>
+<li>Inicializar la distancia a 0 para el nodo fuente y a &#8734; para los demás nodos</li>
+<li>Repetir N-1 veces, donde N es el número de nodos</li>
+<li>Para cada arista (a,b) del grafo</li>
+<li>Si el coste de "a" es menor que &#8734;, aplicar la actualización de Dijkstra a la distancia de "b"</li>
+<li>Al final del bucle, si todavía existe una arista (a,b) tal que la distancia de "a" es menor que &#8734; y la actualización de Dijkstra disminuiría la distancia de "b", existe un ciclo de coste negativo</li>
+</ul>
+
+<h4>Resolver problemas de grafos</h4>
+
+<p>
+En general, el proceso de resolver un problema de grafos se puede
+resumir de la siguiente manera:
+</p>
+
+<ol>
+<li>Identificar el tipo de problema y el algoritmo que se aplicará</li>
+<li>Escoger la representación del grafo (normalmente depende del algoritmo)</li>
+<li>Decidir cómo nombrar los nodos del grafo (de 0 a N)</li>
+<li>Leer la entrada y construir la representación del grafo</li>
+<li>Aplicar el algoritmo elegido</li>
+<li>Imprimir el resultado en el formato que se pide</li>
+</ol>
+
+<p>
+Normalmente los pasos más difíciles son 1 y 4.
+</p>
+
+<h4>Problemas para resolver esta semana</h4>
+
+<p>
+Para resolver los problemas de esta semana podéis aprovechar
+los <a href="http://www.dtic.upf.edu/~jonsson/acm/ejemplos/">ejemplos de código</a>. También
+podéis aprovechar los ejercicios para familiarizaros con las
+estructuras en C++, por ejemplo implementando vuestra propia
+búsqueda BFS con la estructura "list". Los problemas para
+resolver esta semana son:
+</p>
+
+<p>
+Sencillos:
+</p>
+
+<p>
+<img src="./Concurso ACM_files/uva_logo.png" width="20" height="20" alt="UVa logo"> 118 - <a href="http://uva.onlinejudge.org/external/1/118.html">Mutant Flatworld Explorers</a><br>
+<img src="./Concurso ACM_files/uva_logo.png" width="20" height="20" alt="UVa logo"> 336 - <a href="http://uva.onlinejudge.org/external/3/336.html">A Node Too Far</a><br>
+<img src="./Concurso ACM_files/uva_logo.png" width="20" height="20" alt="UVa logo"> 1148 - <a href="http://uva.onlinejudge.org/external/11/1148.html">The mysterious X network</a><br>
+<img src="./Concurso ACM_files/oie_logo.png" width="50" height="25" alt="OIE logo"> <a href="http://www.dtic.upf.edu/~jonsson/acm/problems/4harrichu.pdf"> Harrichu y el laberinto</a><br>
+</p>
+
+<p>
+Avanzados:
+</p>
+<img src="./Concurso ACM_files/uva_logo.png" width="20" height="20" alt="UVa logo"> 1160 - <a href="http://uva.onlinejudge.org/external/11/1160.html">X-Plosives</a><br>
+<img src="./Concurso ACM_files/uva_logo.png" width="20" height="20" alt="UVa logo"> 1174 - <a href="http://uva.onlinejudge.org/external/11/1174.html">IP-TV</a><br>
+<img src="./Concurso ACM_files/uva_logo.png" width="20" height="20" alt="UVa logo"> 12176 - <a href="http://www.dtic.upf.edu/~jonsson/acm/problems/12176.pdf">Bring Your Own Horse</a><br>
+<img src="./Concurso ACM_files/uva_logo.png" width="20" height="20" alt="UVa logo"> 12202 - <a href="http://uva.onlinejudge.org/external/122/12202.html">Haunted Graveyard</a><br>
+<img src="./Concurso ACM_files/oie_logo.png" width="50" height="25" alt="OIE logo"> <a href="http://www.dtic.upf.edu/~jonsson/acm/problems/velo101.pdf"> Velocirráptors 101</a><br>
+<p>
+
+</p>
+
+<hr>
+</body></html>

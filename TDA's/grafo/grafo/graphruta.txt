@@ -1,0 +1,10 @@
+v	|v	|v	|v	|v	|v	|¬
+Tabachines	|Jalisco	|Parques de Tlaquepaque	|Olímpica	|Centro Garzas	|¬
+~
+0	30	40	50	20	80\
+30	0	20	45	15	75\
+40	20	0	20	80	55\
+50 	45	20	0	70	25\
+20	15	80	70	0	15\
+80	75	55	25	15	0\
+~

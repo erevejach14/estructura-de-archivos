@@ -1,0 +1,82 @@
+# depslib dependency file v1.0
+1473449430 source:c:\users\alfredo\desktop\actividad 3\main.cpp
+	<iostream>
+	"interfaz.h"
+
+1473445529 source:c:\users\alfredo\desktop\actividad 3\musica.cpp
+	"musica.h"
+
+1473445553 c:\users\alfredo\desktop\actividad 3\musica.h
+	<string>
+	<iostream>
+
+1473451897 source:c:\users\alfredo\desktop\actividad 3\interfaz.cpp
+	"interfaz.h"
+
+1473447865 c:\users\alfredo\desktop\actividad 3\interfaz.h
+	<string>
+	<cstdlib>
+	"lista.h"
+	"musica.h"
+
+1473463181 c:\users\alfredo\desktop\actividad 3\lista.h
+	<iostream>
+	<exception>
+	<string>
+	"musica.h"
+
+1474425267 source:c:\users\alfredo\desktop\universidad de guadalajara cucei\ing. computación\semestre 2\estructura de datos i\actividades\actividad de aprendizaje 03. la lista, implementación estática\actividad 3\interfaz.cpp
+	"interfaz.h"
+
+1474424304 c:\users\alfredo\desktop\universidad de guadalajara cucei\ing. computación\semestre 2\estructura de datos i\actividades\actividad de aprendizaje 03. la lista, implementación estática\actividad 3\interfaz.h
+	<cstdlib>
+	<string>
+	"lista.h"
+	"musica.h"
+
+1474428052 c:\users\alfredo\desktop\universidad de guadalajara cucei\ing. computación\semestre 2\estructura de datos i\actividades\actividad de aprendizaje 03. la lista, implementación estática\actividad 3\lista.h
+	<exception>
+	<iostream>
+	<fstream>
+	<string>
+	"musica.h"
+
+1474425267 c:\users\alfredo\desktop\universidad de guadalajara cucei\ing. computación\semestre 2\estructura de datos i\actividades\actividad de aprendizaje 03. la lista, implementación estática\actividad 3\musica.h
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	<string>
+
+1474424442 source:c:\users\alfredo\desktop\universidad de guadalajara cucei\ing. computación\semestre 2\estructura de datos i\actividades\actividad de aprendizaje 03. la lista, implementación estática\actividad 3\main.cpp
+	<iostream>
+	"interfaz.h"
+
+1474425805 source:c:\users\alfredo\desktop\universidad de guadalajara cucei\ing. computación\semestre 2\estructura de datos i\actividades\actividad de aprendizaje 03. la lista, implementación estática\actividad 3\musica.cpp
+	"musica.h"
+
+1474424442 source:c:\users\alfredo\desktop\actividad 5\main.cpp
+	<iostream>
+	"interfaz.h"
+
+1474424304 c:\users\alfredo\desktop\actividad 5\interfaz.h
+	<cstdlib>
+	<string>
+	"lista.h"
+	"musica.h"
+
+1474430712 c:\users\alfredo\desktop\actividad 5\lista.h
+	<exception>
+	<iostream>
+	<fstream>
+	<string>
+	"musica.h"
+
+1474425267 c:\users\alfredo\desktop\actividad 5\musica.h
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	<string>
+
+1474425805 source:c:\users\alfredo\desktop\actividad 5\musica.cpp
+	"musica.h"
+

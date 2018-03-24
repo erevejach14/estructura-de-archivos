@@ -1,0 +1,26 @@
+* { /* css */ }
+body { /* css */ }
+#wrapper { /* css */ }
+#innerwrapper { /* css */ }
+
+#content { /* css */ }
+#content div { /* css */ }
+#content span { /* css */ }
+#content etc { /* css */ }
+
+#header { /* css */ }
+#header etc { /* css */ }
+
+#footer { /* css */ }
+#footer etc { /* css */ }
+
+table{ border-collapse:collapse; border-right: 2px solid black; border-bottom: 2px solid black; }
+th{ border-right: 1px solid black; border-bottom: 1px solid black; }
+td{ border: 1px solid black; }
+
+.blue { color: #0000FF; font-weight: bold; }
+.pink { color: #FF00FF; }
+.green { color: #2E8B81; font-weight: bold;}
+.garnet { color: #A52A46; font-weight: bold;}
+.lilac { color: #A057FA; }
+

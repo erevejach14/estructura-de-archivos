@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1448549837 source:c:\users\david\desktop\graph\graph.cpp
+	"graph.h"
+
+1448548733 c:\users\david\desktop\graph\graph.h
+	<iostream>
+	<string>
+
+1448549854 source:c:\users\david\desktop\graph\main.cpp
+	<iostream>
+	<cstdlib>
+	"graph.h"
+
+1460151863 source:c:\users\kiyoshi\google drive\cucei\semestre 2\estructuras de datos\en clase\graphmaze\graph\graph.cpp
+	"graph.h"
+
+1457505690 c:\users\kiyoshi\google drive\cucei\semestre 2\estructuras de datos\en clase\graphmaze\graph\graph.h
+	<iostream>
+	<string>
+
+1458059048 source:c:\users\kiyoshi\google drive\cucei\semestre 2\estructuras de datos\en clase\graphmaze\graph\main.cpp
+	<iostream>
+	<cstdlib>
+	"graph.h"
+
+1474845694 source:c:\users\danie\desktop\graphmaze\graph\grafo.cpp
+	"grafo.h"
+
+1474845694 c:\users\danie\desktop\graphmaze\graph\grafo.h
+	<iostream>
+	<string>
+
+1474845867 source:c:\users\danie\desktop\grafo\graph\main.cpp
+	<iostream>
+	<cstdlib>
+	"grafo.h"
+
+1474911329 c:\users\danie\desktop\grafo\graph\grafo.h
+	<iostream>
+	<string>
+
+1474911384 source:c:\users\danie\desktop\grafo\graph\grafo.cpp
+	"grafo.h"
+
+1475042886 source:f:\grafo\graph\grafo.cpp
+	"grafo.h"
+
+1475042858 f:\grafo\graph\grafo.h
+	<iostream>
+	<string>
+
+1475041914 source:f:\grafo\graph\main.cpp
+	<iostream>
+	<cstdlib>
+	"grafo.h"
+

@@ -1,0 +1,20 @@
+***********************************************************
+****** Operaciones básicas de una pila implementada con plantillas ******
+***********************************************************
+
+Autor: Angel Rengifo Cancino
+Ubicacion: Lima, Perú
+
+Este código nos enseña las operaciones básicas de una pila de cualquier tipo
+de datos para lo cual me he basado en las plantillas (templates). 
+He procurado que este código  se ajuste lo mayor posible 
+al estándar  ANSI C/C++ para que pueda  ser fácilmente 
+transportable  a cualquier  compilador sobre cualquier 
+plataforma. Compilé sin problemas este código sobre el 
+GCC y el DJGPP  de GNU.  No habría problema alguno con 
+cualquier otro compilador.                             
+este código puede ser libremente copiado y distribuido 
+siempre y cuando se mantenga intacta esta nota.  Úsese 
+para aprender de él y  ompartamos el conocimiento con  
+todos para hacer cada día un mejor software.           
+
